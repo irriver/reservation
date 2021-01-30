@@ -8,6 +8,6 @@ public interface ProductService {
 
 	List<Product> selectAll(int start);
 
-	List<Product> selectByCategoryId(int categoryId, int start);
+	List<Product> selectByCategoryId(Integer categoryId, int start);
 
 }
