@@ -29,7 +29,7 @@ public class ProductDao {
 	public List<Product> selectAll(Integer start) {
 		Map<String, Integer> param = new HashMap<>();
 		param.put("start", start);
-		return jdbc.queryForObject(SELECT_ALL, param, rowMapper);
+		return jdbc.query(SELECT_ALL, param, rowMapper);
 	}
 
 	//넘어온 categoryId와 일치하는 product 정보를 start부터 시작해서 추출
