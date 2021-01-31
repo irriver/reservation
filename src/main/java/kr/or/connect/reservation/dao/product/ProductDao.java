@@ -33,7 +33,7 @@ public class ProductDao {
 	}
 
 	//넘어온 categoryId와 일치하는 product 정보를 start부터 시작해서 추출
-	public List<Product> selectByCategoryId(Integer categoryId, Integer start) {
+	public List<Product> selectByCategoryId(Integer categoryId, int start) {
 		Map<String, Integer> params = new HashMap<>();
 		params.put("categoryId", categoryId);
 		params.put("start", start);

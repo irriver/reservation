@@ -3,6 +3,7 @@ package kr.or.connect.reservation.dao.displayInfo;
 import static kr.or.connect.reservation.dao.displayInfo.DisplayInfoDaoSqls.*;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.sql.DataSource;
@@ -25,8 +26,9 @@ public class DisplayInfoDao {
 	}
  
 	public int countByCategoryId(Integer categoryId) {
-		Map<String, ?> params = Collections.singletonMap("categoryId", categoryId);
-		return jdbc.queryForObject(COUNT_BY_CATEGORY_ID, params, Integer.class);
+		Map<String, Integer> param = new HashMap<>();
+		param.put("categoryId", categoryId);
+		return jdbc.queryForObject(COUNT_BY_CATEGORY_ID, param, Integer.class);
 	}
 
 }
