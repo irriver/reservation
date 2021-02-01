@@ -13,5 +13,7 @@ public class DisplayInfoDaoSqls {
 													+ "WHERE p.category_id = :categoryId";
 	
 	//카테코리 아이디별 전시상품 목록을 추출하는 products
-	
+
+	public static final String SELECT_DISPLAY_IMAGES_BY_DISPLAY_ID = 
+			"";
 }

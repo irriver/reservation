@@ -1,7 +1,6 @@
 package kr.or.connect.reservation.dao.product;
 
-import static kr.or.connect.reservation.dao.product.ProductDaoSqls.SELECT_ALL;
-import static kr.or.connect.reservation.dao.product.ProductDaoSqls.SELECT_BY_CATEGORY_ID;
+import static kr.or.connect.reservation.dao.product.ProductDaoSqls.*;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -16,6 +15,8 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import kr.or.connect.reservation.dto.product.Product;
+import kr.or.connect.reservation.dto.product.ProductImage;
+import kr.or.connect.reservation.dto.product.ProductPrice;
 
 @Repository
 public class ProductDao {
@@ -38,6 +39,24 @@ public class ProductDao {
 		params.put("categoryId", categoryId);
 		params.put("start", start);
 		return jdbc.query(SELECT_BY_CATEGORY_ID, params, rowMapper);
+	}
+	
+	public Product selectByDisplayId(Integer displayId) {
+		Map<String, Integer> param = new HashMap<>();
+		param.put("displayId", displayId);
+		return jdbc.queryForObject(SELECT_BY_DISPLAY_ID, param, rowMapper);
+	}
+
+	public List<ProductImage> selectProductImages(Integer displayId) {
+		Map<String, Integer> param = new HashMap<>();
+		param.put("displayId", displayId);
+		return jdbc.query(SELECT_PRODUCT_IMAGES_BY_DISPLAY_ID, param, rowMapper);
+	}
+
+	public List<ProductPrice> selectProductPrices(Integer displayId) {
+		Map<String, Integer> param = new HashMap<>();
+		param.put("displayId", displayId);
+		return jdbc.query(SELECT_PRODUCT_PRICES_BY_DISPLAY_ID, param, rowMapper);
 	}
 
 }

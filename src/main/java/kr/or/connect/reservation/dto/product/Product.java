@@ -1,7 +1,5 @@
 package kr.or.connect.reservation.dto.product;
 
-import java.util.Date;
-
 public class Product {
 	private int id;
 	private int category_id;
@@ -16,6 +14,7 @@ public class Product {
 	private String placeStreet;
 	private String tel;
 	private String homepage;
+	private String email;
 	private String createDate;
 	private String modifyDate;
 	private int fileId;
@@ -115,5 +114,11 @@ public class Product {
 	}
 	public void setFileId(int fileId) {
 		this.fileId = fileId;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 }
