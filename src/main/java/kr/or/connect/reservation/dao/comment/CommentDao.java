@@ -1,8 +1,9 @@
 package kr.or.connect.reservation.dao.comment;
 
-import static kr.or.connect.reservation.dao.comment.CommentDaoSqls.SELECT_AVERAGE_SCORE_BY_DISPLAY_ID;
+import static kr.or.connect.reservation.dao.comment.CommentDaoSqls.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.sql.DataSource;
@@ -24,9 +25,16 @@ public class CommentDao {
 	}
 
 	public int getAverageScoresByDisplayId(Integer displayId) {
-		Map<String, Integer> param = new HashMap<>();
+		Map<String, Object> param = new HashMap<>();
 		param.put("displayId", displayId);
 		return jdbc.queryForObject(SELECT_AVERAGE_SCORE_BY_DISPLAY_ID, param, Integer.class);
+	}
+
+	public List<Comment> selectAllCommentsByProductId(Integer productId, int start) {
+		Map<String, Object> params = new HashMap<>();
+		params.put("productId", productId);
+		params.put("start", start);
+		return jdbc.query(SELECT_ALL_COMMENTS_BY_PRODUCT_ID, params, rowMapper);
 	}
 	
 }
