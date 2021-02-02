@@ -21,7 +21,9 @@ import kr.or.connect.reservation.dto.product.ProductPrice;
 @Repository
 public class ProductDao {
 	private NamedParameterJdbcTemplate jdbc;
-	private RowMapper<Product> rowMapper = BeanPropertyRowMapper.newInstance(Product.class);
+	private RowMapper<Product> productRowMapper = BeanPropertyRowMapper.newInstance(Product.class);
+	private RowMapper<ProductImage> productImageRowMapper = BeanPropertyRowMapper.newInstance(ProductImage.class);
+	private RowMapper<ProductPrice> productPriceRowMapper = BeanPropertyRowMapper.newInstance(ProductPrice.class);
 	
 	public ProductDao(DataSource dataSource) {
 		this.jdbc = new NamedParameterJdbcTemplate(dataSource);
@@ -30,7 +32,7 @@ public class ProductDao {
 	public List<Product> selectAll(Integer start) {
 		Map<String, Integer> param = new HashMap<>();
 		param.put("start", start);
-		return jdbc.query(SELECT_ALL, param, rowMapper);
+		return jdbc.query(SELECT_ALL, param, productRowMapper);
 	}
 
 	//넘어온 categoryId와 일치하는 product 정보를 start부터 시작해서 추출
@@ -38,25 +40,25 @@ public class ProductDao {
 		Map<String, Integer> params = new HashMap<>();
 		params.put("categoryId", categoryId);
 		params.put("start", start);
-		return jdbc.query(SELECT_BY_CATEGORY_ID, params, rowMapper);
+		return jdbc.query(SELECT_BY_CATEGORY_ID, params, productRowMapper);
 	}
 	
 	public Product selectByDisplayId(Integer displayId) {
 		Map<String, Integer> param = new HashMap<>();
 		param.put("displayId", displayId);
-		return jdbc.queryForObject(SELECT_BY_DISPLAY_ID, param, rowMapper);
+		return jdbc.queryForObject(SELECT_BY_DISPLAY_ID, param, productRowMapper);
 	}
 
 	public List<ProductImage> selectProductImages(Integer displayId) {
 		Map<String, Integer> param = new HashMap<>();
 		param.put("displayId", displayId);
-		return jdbc.query(SELECT_PRODUCT_IMAGES_BY_DISPLAY_ID, param, rowMapper);
+		return jdbc.query(SELECT_PRODUCT_IMAGES_BY_DISPLAY_ID, param, productImageRowMapper);
 	}
 
 	public List<ProductPrice> selectProductPrices(Integer displayId) {
 		Map<String, Integer> param = new HashMap<>();
 		param.put("displayId", displayId);
-		return jdbc.query(SELECT_PRODUCT_PRICES_BY_DISPLAY_ID, param, rowMapper);
+		return jdbc.query(SELECT_PRODUCT_PRICES_BY_DISPLAY_ID, param, productPriceRowMapper);
 	}
 
 }
