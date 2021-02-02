@@ -48,7 +48,7 @@ public class ProductDaoSqls {
 	
 	public static final String SELECT_PRODUCT_IMAGES_BY_DISPLAY_ID = 
 			"SELECT "
-				+ "pi.product_id, pi.id, pi.type, pi.file_id, f.file_id, f.file_name, f.save_file_name, f.content_type, f.delete_flag, f.create_date, f.modify_date "
+				+ "pi.product_id, pi.id, pi.type, pi.file_id, f.file_name, f.save_file_name, f.content_type, f.delete_flag, f.create_date, f.modify_date "
 			+ "FROM product_image pi "
 				+ "LEFT JOIN file_info f ON f.id = pi.file_id "
 				+ "LEFT JOIN display_info d ON d.product_id = pi.product_id "
@@ -58,6 +58,6 @@ public class ProductDaoSqls {
 			"SELECT "
 				+ "pp.id, pp.product_id, pp.price_type_name, pp.price, pp.discount_rate, pp.create_date, pp.modify_date "
 			+ "FROM product_price pp "
-				+ "LEFT JOIN display_info d ON d.product_id = pp.product_id"
+				+ "LEFT JOIN display_info d ON d.product_id = pp.product_id "
 			+ "WHERE d.id = :displayId";
 }

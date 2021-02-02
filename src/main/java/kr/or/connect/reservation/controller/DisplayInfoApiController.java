@@ -68,10 +68,10 @@ public class DisplayInfoApiController {
 		DetailDisplayInfoResult result = new DetailDisplayInfoResult();
 		
 		Product product = productService.selectByDisplayId(displayId);
-		List<ProductImage> productImages = productService.getProductImages(displayId);
-		List<DisplayInfoImage> displayInfoImages = displayInfoService.getDisplayInfoImages(displayId);
+		List<ProductImage> productImages = productService.selectProductImages(displayId);
+		List<DisplayInfoImage> displayInfoImages = displayInfoService.selectDisplayInfoImages(displayId);
 		int avgScore = commentService.getAverageScoresByDisplayId(displayId);
-		List<ProductPrice> productPrices = productService.getProductPrices(displayId);
+		List<ProductPrice> productPrices = productService.selectProductPrices(displayId);
 		
 		result.setProduct(product);
 		result.setProductImages(productImages);
